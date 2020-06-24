@@ -5,7 +5,7 @@ https://flywaydb.org
 
 O ambiente foi montado para execução via Docker.
 ### Execute:
-    + `docker-compose up -d`
+`docker-compose up -d`
 
 Histórico de versionamento:
 
