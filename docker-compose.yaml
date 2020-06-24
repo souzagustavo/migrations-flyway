@@ -1,0 +1,28 @@
+version: "2"
+
+services:
+  
+  mssql:
+    image: mcr.microsoft.com/mssql/server
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password@123
+      - MSSQL_PID=Developer
+
+  create_db:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - mssql
+    command: /bin/bash -c 'until /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P "Password@123" -Q "create database [db-test-flyway]"; do sleep 5; done'
+
+  flyway:
+    image: flyway/flyway
+    command: migrate
+    depends_on:
+      - mssql
+      - create_db
+    volumes:
+      - ./flyway/sql:/flyway/sql
+      - ./flyway/conf:/flyway/conf
