@@ -9,9 +9,9 @@ O ambiente foi montado para execução via Docker.
 `docker-compose up -d`
 
 ### Conecte ao banco de dados:
-`server: localhost`
-`user: sa`
-`password: Password@123`
++ `server: localhost`
++ `user: sa`
++ `password: Password@123`
 
 
 + Histórico de versionamento:
